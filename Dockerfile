@@ -142,7 +142,8 @@ RUN chown -R logstash:logstash ${LOGSTASH_HOME}/patterns
 RUN chmod -R +r /etc/logstash
 RUN curl -O https://codeload.github.com/anbai-inc/Kibana_Hanization/zip/master \ 
     && unzip master  \
-    && python Kibana_Hanization-master/main.py  /opt/kibana
+    && cd  Kibana_Hanization-master/  \
+    && python main.py  /opt/kibana
 
 ### configure logrotate
 
