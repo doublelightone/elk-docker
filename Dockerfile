@@ -23,7 +23,7 @@ ENV GOSU_VERSION 1.8
 ARG DEBIAN_FRONTEND=noninteractive
 RUN set -x \
  && apt-get update -qq \
- && apt-get install -qqy --no-install-recommends ca-certificates curl \
+ && apt-get install -qqy --no-install-recommends ca-certificates curl python unzip \
  && rm -rf /var/lib/apt/lists/* \
  && curl -L -o /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
  && curl -L -o /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
@@ -140,6 +140,9 @@ RUN chown -R logstash:logstash ${LOGSTASH_HOME}/patterns
 
 # Fix permissions
 RUN chmod -R +r /etc/logstash
+RUN curl -O https://codeload.github.com/anbai-inc/Kibana_Hanization/zip/master \ 
+    && cd Kibana_Hanization-master/   \
+    && python main.py  /opt/kibana
 
 ### configure logrotate
 
